@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -50,6 +56,7 @@ const MenuRoute = MenuRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/gallery': typeof GalleryRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/gallery': typeof GalleryRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/gallery': typeof GalleryRoute
@@ -74,13 +83,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/experience' | '/gallery' | '/menu'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/experience'
+    | '/gallery'
+    | '/menu'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/experience' | '/gallery' | '/menu'
+  to:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/experience'
+    | '/gallery'
+    | '/menu'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/experience'
     | '/gallery'
@@ -90,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
   GalleryRoute: typeof GalleryRoute
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -146,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
   GalleryRoute: GalleryRoute,

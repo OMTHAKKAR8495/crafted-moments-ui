@@ -30,7 +30,7 @@ describe("Contact inquiry validation", () => {
   });
 
   it("rejects an email longer than 255 characters", () => {
-    expect(inquirySchema.safeParse({ ...valid, email: `${"a".repeat(250)}@b.co` }).success).toBe(false);
+    expect(inquirySchema.safeParse({ ...valid, email: `${"a".repeat(252)}@b.co` }).success).toBe(false);
   });
 
   it("requires a topic from the list", () => {
