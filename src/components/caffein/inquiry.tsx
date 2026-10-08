@@ -21,7 +21,7 @@ type InquiryValues = z.infer<typeof inquirySchema>;
 export function Inquiry() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState<InquiryValues | null>(null);
-  const timer = useRef<number>();
+  const timer = useRef<number | undefined>(undefined);
   const sentRef = useRef<HTMLDivElement>(null);
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
