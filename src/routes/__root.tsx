@@ -78,21 +78,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Caffein — Coffee, Crafted With Character" },
+      { name: "description", content: "Thoughtful coffee, honest food, and a place to pause. Discover Caffein." },
+      
+      { property: "og:title", content: "Caffein — Coffee, Crafted With Character" },
+      { property: "og:description", content: "Thoughtful coffee, honest food, and a place to pause. Discover Caffein." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Poiret+One&family=Raleway:wght@400;500;600&display=swap" },
     ],
   }),
   shellComponent: RootShell,
